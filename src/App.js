@@ -1,25 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from 'react';
+import {
+  Route,
+  BrowserRouter as Router
+} from 'react-router-dom';
+import Beranda from './Beranda';
+import Detail from './Detail';
+import MyPokemon from './MyPokemon';
+import { Container, Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <Navbar bg="light" expand="lg">
+          <Navbar.Brand href="/tokopedia_test/">Pokemon by Muhamad Ardhi</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="/mypokemon/">My Pokemon</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+        <Container>
+          <Route exact path="/tokopedia_test/" component={Beranda} />
+          <Route path="/detail/:name" component={Detail} />
+          <Route path="/mypokemon" component={MyPokemon} />
+        </Container>
+      </Router>
+    );
+  }
 }
 
 export default App;
